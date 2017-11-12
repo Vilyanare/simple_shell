@@ -1,0 +1,7 @@
+Q: Why does "echo $$" print the same value as our program that runs getppid()?
+
+A: $$ is the process ID of the current shell instance. If you type "ps -p $$",
+   it will give you a better idea of what is going on. "echo $" will print a
+   single "$". A dollar-sign followed by a variable name is how we print that
+   variable's value in bash.
+
