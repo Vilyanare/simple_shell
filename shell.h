@@ -2,7 +2,6 @@
 #define SHELL_H
 
 
-
 /****************************
  * directives and libraries *
  ****************************/
@@ -15,7 +14,6 @@
 #include <sys/wait.h>
 #include <limits.h>
 #include <stdarg.h>
-
 
 
 /**************
@@ -49,18 +47,18 @@ typedef struct relations
 } rela_t;
 
 
-
 /***********************
  * function prototypes *
  ***********************/
-int _puts(char *s);
-int _strlen(char *s);
 int counttok(char *s, char *delim);
 char *getkirby(void);
 l_env *add_envir(char **env);
 size_t list_len(const l_env *h);
 l_env *add_node_end(l_env **head, char *s);
 void free_listenv(l_env *head);
+/* strings1 functions */
+int _puts(char *s);
+int _strlen(char *s);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
 /* _printf functions */
@@ -69,7 +67,12 @@ int (*func_pick(char s))(va_list);
 int print_string(va_list);
 int print_number(va_list);
 int null_case(char);
-
+/* _eprintf functions */
+int _eprintf(const char *format, ...);
+int (*efunc_pick(char s))(va_list);
+int eprint_string(va_list);
+int eprint_number(va_list);
+int enull_case(char);
 
 
 #endif /* SHELL_H */
