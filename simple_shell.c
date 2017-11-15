@@ -1,9 +1,9 @@
 #include "shell.h"
+
 /**
  * main - endless loop looking for user input
  * Description: Main entry point to simple holberton shell
  */
-/* sh: 1: ./././ls: not found */
 int main(int ac, char **av)
 {
 	char *s = NULL;
@@ -32,24 +32,21 @@ int main(int ac, char **av)
 		{
 			if(stat(args[0], &st) != 0)
 			{
-				/* HAVEN'T CHANGED TO "_printf(...)" TO DEMONSTRATE ISSUE */
-				printf("%s: %d: %s: not found\n", av[0], history, args[0]);
+				_printf("%s: %d: %s: not found\n", av[0], history, args[0]);
 				exit (127);
 			}
 			execv(args[0], args);
 			/* HANDLE AN ERROR IF EXECV FAILS */
 		}
 		else
-		{
 			wait(&status);
-		}
 	}
+	return (0);
 }
 
 /****************
  * known issues *
  ****************/
-/* shouldnt we use execve(), not execv() ? */
 
 /* TO BE COMPLETED COMMENTS ARE CAPITALIZED */
 
