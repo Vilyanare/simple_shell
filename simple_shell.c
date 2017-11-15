@@ -32,6 +32,7 @@ int main(int ac, char **av)
 		{
 			if(stat(args[0], &st) != 0)
 			{
+				/* HAVEN'T CHANGED TO "_printf(...)" TO DEMONSTRATE ISSUE */
 				printf("%s: %d: %s: not found\n", av[0], history, args[0]);
 				exit (127);
 			}
