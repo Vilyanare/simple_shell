@@ -15,7 +15,7 @@ int main(int ac, char **av)
 
 	(void) ac;
 	(void) av;
-	
+
 	while (1)
 	{
 		history++;
@@ -36,6 +36,7 @@ int main(int ac, char **av)
 				exit (127);
 			}
 			execv(args[0], args);
+			/* HANDLE AN ERROR IF EXECV FAILS */
 		}
 		else
 		{
@@ -43,3 +44,12 @@ int main(int ac, char **av)
 		}
 	}
 }
+
+/****************
+ * known issues *
+ ****************/
+/* shouldnt we use execve(), not execv() ? */
+
+/* TO BE COMPLETED COMMENTS ARE CAPITALIZED */
+
+/* all other comments are intended for readibility */
