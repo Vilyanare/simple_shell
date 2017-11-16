@@ -30,3 +30,11 @@ when I go through to clean-up for Betty, I would like to do the following.
   * instead of passing a string literal to strtok lie ":", define a variable and
     assign it the value of ":". do this for functions other than strtok as well.
 5. make sure we are not using any of the functions we're not allowed to use
+
+### Candidate names for the shell
+Top 3
+
+4-letter: cash, rash, tush, mush
+5-letter: GNUsh
+6-letter: delish
+standoffish
