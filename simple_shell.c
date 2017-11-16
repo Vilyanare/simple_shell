@@ -45,14 +45,14 @@ int main(int ac, char **av)
 		args = malloc(sizeof(char *) * arg_cnt);
 		if (args == NULL)
 			return (1); /* CHANGE THIS TO SEND TO ERROR_FUNC */
-		arg_tmp = strtok(s, " \n");
+		arg_tmp = _strtok(s, " \n");
 		for (i = 0; arg_tmp; i++)
 		{
 			args[i] = malloc(sizeof(1) * strlen(arg_tmp) + 1);
 			if (args[i] == NULL)
 				return (1); /* CHANGE THIS TO SEND TO ERROR */
 			strcpy(args[i], arg_tmp);
-			arg_tmp = strtok(NULL, " \n");
+			arg_tmp = _strtok(NULL, " \n");
 		}
 		args[i] = NULL;
 		/************* END FUNCTION *************************/

@@ -61,6 +61,9 @@ int _puts(char *s);
 int _strlen(char *s);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
+/* strings 2 functions */
+int counttok(char *s, char *delim);
+char *_strtok(char *s, char *delim);
 /* _printf functions */
 int _printf(const char *format, ...);
 int (*func_pick(char s))(va_list);
