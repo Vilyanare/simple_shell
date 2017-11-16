@@ -17,6 +17,7 @@ int main(int ac, char **av)
 	int arg_dlm = 0;
 	int arg_cnt = 1;
 	char *arg_tmp = NULL;
+	int ninter = isatty(STDIN_FILENO);
 
 	(void) ac;
 	(void) av;
@@ -24,10 +25,12 @@ int main(int ac, char **av)
 	while (1)
 	{
 		history++;
-		_puts("$ ");
-		if (getline(&s, &size, stdin) < 1)
+		if (ninter)
+			_puts("$ ");
+		if (getline(&s, &size, stdin) == -1)
 		{
-			_puts("\n");
+			if (ninter)
+				_puts("\n");
 			exit (EXIT_SUCCESS);
 		}
 
@@ -49,13 +52,13 @@ int main(int ac, char **av)
 		}
 		args = malloc(sizeof(char *) * arg_cnt);
 		if (args == NULL)
-			return (NULL) /* CHANGE THIS TO SEND TO ERROR_FUNC */
+			return (1); /* CHANGE THIS TO SEND TO ERROR_FUNC */
 		arg_tmp = strtok(s, " ");
 		for (i = 0; arg_tmp; i++)
 		{
 			args[i] = malloc(sizeof(1) * strlen(arg_tmp) + 1);
 			if (args[i] == NULL)
-				return (NULL) /* CHANGE THIS TO SEND TO ERROR */
+				return (1); /* CHANGE THIS TO SEND TO ERROR */
 			strcpy(args[i], arg_tmp);
 			arg_tmp = strtok(NULL, " ");
 		}
