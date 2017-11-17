@@ -9,14 +9,14 @@ int main(int ac, char **av)
 	char *s = NULL;
 	size_t size;
 	pid_t child_pid;
-	char **args;
+	char **args = NULL;
 	int status, history = 0;
 	struct stat st;
 	/* THESE VARIABLES ARE USED FOR THE FUNCTION THAT TOKENS THE ARGUMENT STRING */
-	int i;
-	int arg_dlm = 0;
-	int arg_cnt = 1;
+	int tokcount, i;
+	char **maltemp = NULL;
 	char *arg_tmp = NULL;
+	char *delim = " \n";
 	int ninter = isatty(STDIN_FILENO);
 
 	(void) ac;
@@ -28,31 +28,22 @@ int main(int ac, char **av)
 	{
 		history++;
 
+		tokcount = counttok(s, delim);
 		/************** FUNCTION THAT I ADDED ******************/
 		/* turn the getline buffer into a series of tokens */
-		i = 0;
-		while (s[i])
-		{
-			if (s[i] == ' ' && arg_dlm == 0)
-			{
-				arg_dlm = 1;
-				arg_cnt++;
-			}
-			if (s[i] != ' ')
-				arg_dlm = 0;
-			i++;
-		}
-		args = malloc(sizeof(char *) * arg_cnt);
-		if (args == NULL)
+		maltemp = realloc(args, sizeof(char *) * tokcount);
+		if (maltemp == NULL)
 			return (1); /* CHANGE THIS TO SEND TO ERROR_FUNC */
-		arg_tmp = _strtok(s, " \n");
+		args = maltemp;
+		arg_tmp = _strtok(s, delim);
 		for (i = 0; arg_tmp; i++)
 		{
-			args[i] = malloc(sizeof(1) * strlen(arg_tmp) + 1);
-			if (args[i] == NULL)
+			maltemp[i] = realloc(args[i], sizeof(1) * strlen(arg_tmp) + 1);
+			if (maltemp[i] == NULL)
 				return (1); /* CHANGE THIS TO SEND TO ERROR */
+			args[i] = maltemp[i];
 			strcpy(args[i], arg_tmp);
-			arg_tmp = _strtok(NULL, " \n");
+			arg_tmp = _strtok(NULL, delim);
 		}
 		args[i] = NULL;
 		/************* END FUNCTION *************************/
@@ -76,9 +67,12 @@ int main(int ac, char **av)
 		}
 	}
 	free(s);
-	for( ; i >= 0; i--)
-		free(args[i]);
-	free(args);
+	for( ; tokcount >= 0; tokcount--)
+	{
+		free(maltemp[i]);
+	}
+	free(maltemp);
+	free(arg_tmp);
 	if (ninter)
 		_puts("\n");
 	exit (EXIT_SUCCESS);
