@@ -64,6 +64,12 @@ char *_strchr(char *s, char c);
 /* strings 2 functions */
 int counttok(char *s, char *delim);
 char *_strtok(char *s, char *delim);
+/* environment handling functions */
+size_t list_lenenv(const l_env *h);
+void free_listenv(l_env *head);
+l_env *add_envir(char **env);
+l_env *add_node_endenv(l_env **head, char *s);
+void print_envlist(l_env *head);
 /* _printf functions */
 int _printf(const char *format, ...);
 int (*func_pick(char s))(va_list);

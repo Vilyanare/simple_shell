@@ -4,23 +4,25 @@
  * main - endless loop looking for user input
  * Description: Main entry point to simple holberton shell
  */
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
 	char *s = NULL;
-	size_t size;
-	pid_t child_pid;
+	size_t size = 0;
+	pid_t child_pid = 0;
 	char **args = NULL;
-	int status, history = 0;
+	int status = 0, history = 0;
 	struct stat st;
 	/* THESE VARIABLES ARE USED FOR THE FUNCTION THAT TOKENS THE ARGUMENT STRING */
-	int tokcount, i;
+	int tokcount = 0, i = 0;
 	char *arg_tmp = NULL;
 	char *delim = " \n";
 	int ninter = isatty(STDIN_FILENO);
+	l_env *environ = NULL;
 
 	(void) ac;
-	(void) av;
 
+
+	environ = add_envir(env);
 	if (ninter)
 		_puts("$ ");
 	while (getline(&s, &size, stdin) != -1)
@@ -64,6 +66,7 @@ int main(int ac, char **av)
 		}
 	}
 	free(s);
+	free_listenv(environ);
 	if (history)
 	{
 		for( ; tokcount >= 0; tokcount--)
