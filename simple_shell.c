@@ -14,7 +14,6 @@ int main(int ac, char **av)
 	struct stat st;
 	/* THESE VARIABLES ARE USED FOR THE FUNCTION THAT TOKENS THE ARGUMENT STRING */
 	int tokcount, i;
-	char **maltemp = NULL;
 	char *arg_tmp = NULL;
 	char *delim = " \n";
 	int ninter = isatty(STDIN_FILENO);
@@ -31,17 +30,15 @@ int main(int ac, char **av)
 		tokcount = counttok(s, delim);
 		/************** FUNCTION THAT I ADDED ******************/
 		/* turn the getline buffer into a series of tokens */
-		maltemp = realloc(args, sizeof(char *) * tokcount);
-		if (maltemp == NULL)
+		args = realloc(args, sizeof(char *) * tokcount);
+		if (args == NULL)
 			return (1); /* CHANGE THIS TO SEND TO ERROR_FUNC */
-		args = maltemp;
 		arg_tmp = _strtok(s, delim);
 		for (i = 0; arg_tmp; i++)
 		{
-			maltemp[i] = realloc(args[i], sizeof(1) * strlen(arg_tmp) + 1);
-			if (maltemp[i] == NULL)
+			args[i] = realloc(args[i], sizeof(1) * strlen(arg_tmp) + 1);
+			if (args[i] == NULL)
 				return (1); /* CHANGE THIS TO SEND TO ERROR */
-			args[i] = maltemp[i];
 			strcpy(args[i], arg_tmp);
 			arg_tmp = _strtok(NULL, delim);
 		}
@@ -67,17 +64,15 @@ int main(int ac, char **av)
 		}
 	}
 	free(s);
-	for( ; tokcount >= 0; tokcount--)
+	if (history)
 	{
-		free(maltemp[i]);
+		for( ; tokcount >= 0; tokcount--)
+			free(args[tokcount]);
+		free(args);
 	}
-	free(maltemp);
-	free(arg_tmp);
 	if (ninter)
 		_puts("\n");
 	exit (EXIT_SUCCESS);
-	/* I THINK WE NEED TO FREE THE STRING s SOMEWHERE */
-	/* I THINK WE NEED TO FREE args AND args[i] SOMEWHERE CUZ I MALLOCKED */
 	return (0);
 }
 

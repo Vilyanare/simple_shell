@@ -14,14 +14,20 @@
  */
 int counttok(char *s, char *delim)
 {
-	int count, x = 0;
+	int count, x = 0, f = 0;
 	
 	if (s == NULL)
 		return (0);
 	for (count = 1; s[x]; x++)
 	{
-		if (_strchr(delim, s[x]))
-			count++;
+		if (_strchr(delim, s[x]) && f == 0)
+		{
+			f = 1;
+			if (s[x + 1] && x != 0)
+				count++;
+		}
+		else
+			f = 0;
 	}
 	return (count);
 }
@@ -34,7 +40,7 @@ int counttok(char *s, char *delim)
 char *_strtok(char *s, char *delim)
 {
 	static char *hold;
-	int x = 0;
+	int x = 0, f = 0;
 
 	if (s == 0)
 		s = hold;
@@ -44,11 +50,23 @@ char *_strtok(char *s, char *delim)
 	{
 		if (_strchr(delim, s[x]))
 		{
-			s[x] = '\0';
-			x++;
-			break;
+			if (x == 0 || f == 1)
+			{
+				s += 1;
+				f = 1;
+			}
+			else if (f == 0)
+			{
+				s[x] = '\0';
+				x++;
+				break;
+			}
 		}
-		x++;
+		else
+		{
+			f = 0;
+			x++;
+		}
 	}
 	if (s[x])
 		hold = (s + x);
