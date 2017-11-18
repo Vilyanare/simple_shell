@@ -40,17 +40,20 @@ typedef struct list_environ
  * Description: This struct is used for printf.
  *    ch will be the primary format specifier ie not a flag!
  */
-typedef struct relations
+typedef struct builtin_pointers
 {
-	char ch;
-	int (*fp)(va_list);
-} rela_t;
+	char *usr_str;
+	void (*fnc_ptr)(/* struct name goes here */);
+} buil_t;
 
 
 /***********************
  * function prototypes *
  ***********************/
 char *getkirby(void);
+/* built-in functions */
+int (*pickBuiltIn(char *s))(/* PUT STRUCT PARAM HERE */
+
 /* strings1 functions */
 char *_strcpy(char *dest, char *src);
 int _puts(char *s);
