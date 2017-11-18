@@ -113,7 +113,7 @@ int counttok(char *s, char *delim)
 		if (_strchr(delim, s[x]) && f == 0)
 		{
 			f = 1;
-			if (s[x + 1] && x != 0)
+			if (s[x + 1] != 0 && x != 0)
 				count++;
 		}
 		else

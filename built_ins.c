@@ -6,11 +6,11 @@
  *
  * Return: a pointer to a built-in program
  */
-void (*pickBuiltIn(char *s))(/* PUT STRUCT PARAM HERE */)
+void (*pickBuiltIn(char *s))(l_var *args)
 {
 	buil_t blt_ins[] = {
 		{"env",  print_envlist},
-		{"exit", exit},
+		{"exit", exit_new},
 		{NULL, NULL}
 	};
 	int i;

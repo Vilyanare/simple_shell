@@ -5,7 +5,7 @@
  * @status: a code to determine the status
  * Return: void
  */
-void exit_nu(int status)
+void exit_new(l_var *args)
 {
-	_exit(status);
+	_exit(args->exitstat);
 }

@@ -42,6 +42,7 @@ typedef struct list_environ
  * @av: name of program
  * @hist: how many lines have been executed
  * @ptok: path token count
+ * @exitstat: exit status to send to error program
  */
 typedef struct variables
 {
@@ -53,6 +54,7 @@ typedef struct variables
 	char *av;
 	int hist;
 	int ptok;
+	int exitstat;
 } l_var;
 
 /**
@@ -68,11 +70,15 @@ typedef struct relations
 	char ch;
 	int (*fp)(va_list);
 } rela_t;
-
+/**
+ * struct builtin_pointers - struct to handle builtins
+ * @usr_str: string to match to user input
+ * @fnc_ptr: function to execute on match
+ */
 typedef struct builtin_pointers
 {
 	char *usr_str;
-	void (*fnc_ptr)(/* struct name goes here */);
+	void (*fnc_ptr)(l_var *args);
 } buil_t;
 
 
@@ -102,9 +108,14 @@ void free_listenv(l_env *head);
 l_env *add_envir(char **env);
 l_env *add_node_endenv(l_env **head, char *s);
 void print_envlist(l_var *vars);
+/* builtins */
+void exit_new(l_var *args);
+void (*pickBuiltIn(char *s))(l_var *args);
 /* path handling functions */
 void search_path(l_var *vars);
 void crte_path(l_var *vars);
+/* exit handling */
+void freefunc(l_var *args);
 /* _printf functions */
 int _printf(const char *format, ...);
 int (*func_pick(char s))(va_list);
