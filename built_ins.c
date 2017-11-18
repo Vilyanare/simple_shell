@@ -6,7 +6,7 @@
  *
  * Return: a pointer to a built-in program
  */
-int (*pickBuiltIn(char *s))(/* PUT STRUCT PARAM HERE */)
+void (*pickBuiltIn(char *s))(/* PUT STRUCT PARAM HERE */)
 {
 	buil_t blt_ins[] = {
 		{"env",  print_envlist},
@@ -15,10 +15,10 @@ int (*pickBuiltIn(char *s))(/* PUT STRUCT PARAM HERE */)
 	};
 	int i;
 
-	for (i = 0; relate[i].usr_str != NULL; i++)
+	for (i = 0; blt_ins[i].usr_str != NULL; i++)
 	{
-		if (relate[i].usr_str == s)
+		if (blt_ins[i].usr_str == s)
 			break;
 	}
-	return (relate[i].fnc_ptr);
+	return (blt_ins[i].fnc_ptr);
 }
