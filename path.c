@@ -11,8 +11,8 @@ void crte_path(l_var *vars)
 	{
 		if (_strcmp(head->envvar, "PATH") == 0)
 		{
-			vars->path = tokenizer(head->varval, ":", vars->path);
 			vars->ptok = counttok(head->varval, ":");
+			vars->path = tokenizer(head->varval, ":", vars->path);
 			break;
 		}
 		head = head->next;
@@ -38,6 +38,7 @@ void search_path(l_var *vars)
 		{
 			free(vars->args[0]);
 			vars->args[0] = _strdup(temp);
+			free(temp);
 			break;
 		}
 		x++;

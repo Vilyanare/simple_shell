@@ -114,6 +114,8 @@ void (*pickBuiltIn(char *s))(l_var *args);
 /* path handling functions */
 void search_path(l_var *vars);
 void crte_path(l_var *vars);
+/* exit handling */
+void freefunc(l_var *args);
 /* _printf functions */
 int _printf(const char *format, ...);
 int (*func_pick(char s))(va_list);
