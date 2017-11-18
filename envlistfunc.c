@@ -1,13 +1,5 @@
 #include "shell.h"
 /**
- * envlistfunc.c - a file for handling l_env linked list
- * print_envlist - print l_env 
- * free_listint - frees a l_env linked list
- * list_lenenv - counts length of a l_env linked list
- * add_node_endenv - adds a new node at end of a l_env linked list
- * add_envir - creates a l_env linked list of the environment
- */
-/**
  * print_envlist - print l_env string members
  * @head: beginning of list to print
  */
@@ -18,7 +10,7 @@ void print_envlist(l_env *head)
 		print_envlist(head->next);
 }
 /**
-  *free_listint - free a l_env
+  *free_listenv - free a l_env
   *@head: beginning of list
   */
 void free_listenv(l_env *head)
@@ -48,7 +40,7 @@ size_t list_lenenv(const l_env *h)
 /**
  *add_node_end - add a new node to end of l_env
  *@head: beginning of list
- *@n: number to add to member n
+ *@s: string to add to member
  *Return: addres of new node
  */
 l_env *add_node_endenv(l_env **head, char *s)

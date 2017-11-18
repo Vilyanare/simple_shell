@@ -109,7 +109,8 @@ int enull_case(char ch)
 }
 
 /**
- * func_pick - chooses the appropriate function to print out various data types
+ * efunc_pick - chooses the appropriate function to print out
+ * various data types
  * @s: the character that determines which print function to use
  *
  * Return: a pointer to a function that takes a va_list and returns an int
