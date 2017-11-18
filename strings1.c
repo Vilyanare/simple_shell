@@ -1,11 +1,19 @@
 #include "shell.h"
 /**
- * strings1.c - file for string functions
- * _strlen - count length of a string
- * _puts - print a string to the screen
- * _strchr - compares a string to a char to look for a match
- * _strdup - duplicates a string to a new memory address
+ **_strcpy - copies string from src to dest
+ *@dest: address to put string
+ *@src: address to take string from
+ *Return: char pointer
  */
+char *_strcpy(char *dest, char *src)
+{
+	int x;
+
+	for (x = 0; src[x]; x++)
+		dest[x] = src[x];
+	dest[x] = '\0';
+	return (dest);
+}
 /**
  * _strlen - Find the length of a null terminated string
  * @s: Input string
@@ -15,10 +23,11 @@ int _strlen(char *s)
 {
 	int x = 0;
 
+	if (s == NULL)
+		return (0);
 	for (; s[x]; x++)
 		;
-		
-	return(x);
+	return (x);
 }
 /**
  * _puts - Writes a string to standard output

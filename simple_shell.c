@@ -1,27 +1,27 @@
 #include "shell.h"
 
 /**
- * main - endless loop looking for user input
- * Description: Main entry point to simple holberton shell
+ * main - main entry point to super simple shell
+ * @ac: argument count
+ * @av: arguments
+ * @env: environment passed from parent
+ * Return: exit code 0 for success
  */
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
 	char *s = NULL;
-	size_t size;
-	pid_t child_pid;
+	size_t size = 0;
+	pid_t child_pid = 0;
 	char **args = NULL;
-	int status, history = 0;
+	int status = 0, history = 0;
 	struct stat st;
-	/* THESE VARIABLES ARE USED FOR THE FUNCTION THAT TOKENS THE ARGUMENT STRING */
-	int tokcount, i;
-	char **maltemp = NULL;
-	char *arg_tmp = NULL;
-	char *delim = " \n";
+	int tokcount = 0;
+	char *delim = "\n ";
 	int ninter = isatty(STDIN_FILENO);
+	l_env *environ = NULL;
 
 	(void) ac;
-	(void) av;
-
+	environ = add_envir(env);
 	if (ninter)
 		_puts("$ ");
 	while (getline(&s, &size, stdin) != -1)
@@ -29,32 +29,14 @@ int main(int ac, char **av)
 		history++;
 
 		tokcount = counttok(s, delim);
-		/************** FUNCTION THAT I ADDED ******************/
-		/* turn the getline buffer into a series of tokens */
-		maltemp = realloc(args, sizeof(char *) * tokcount);
-		if (maltemp == NULL)
-			return (1); /* CHANGE THIS TO SEND TO ERROR_FUNC */
-		args = maltemp;
-		arg_tmp = _strtok(s, delim);
-		for (i = 0; arg_tmp; i++)
-		{
-			maltemp[i] = realloc(args[i], sizeof(1) * strlen(arg_tmp) + 1);
-			if (maltemp[i] == NULL)
-				return (1); /* CHANGE THIS TO SEND TO ERROR */
-			args[i] = maltemp[i];
-			strcpy(args[i], arg_tmp);
-			arg_tmp = _strtok(NULL, delim);
-		}
-		args[i] = NULL;
-		/************* END FUNCTION *************************/
-
+		args = tokenizer(s, delim, args);
 		child_pid = fork();
 		if (child_pid == 0)
 		{
-			if(stat(args[0], &st) != 0)
+			if (stat(args[0], &st) != 0)
 			{
 				_printf("%s: %d: %s: not found\n", av[0], history, args[0]);
-				exit (127);
+				exit(127);
 			}
 			execv(args[0], args);
 			/* HANDLE AN ERROR IF EXECV FAILS */
@@ -67,27 +49,14 @@ int main(int ac, char **av)
 		}
 	}
 	free(s);
-	for( ; tokcount >= 0; tokcount--)
+	free_listenv(environ);
+	if (history)
 	{
-		free(maltemp[i]);
+		for ( ; tokcount >= 0; tokcount--)
+			free(args[tokcount]);
+		free(args);
 	}
-	free(maltemp);
-	free(arg_tmp);
 	if (ninter)
 		_puts("\n");
-	exit (EXIT_SUCCESS);
-	/* I THINK WE NEED TO FREE THE STRING s SOMEWHERE */
-	/* I THINK WE NEED TO FREE args AND args[i] SOMEWHERE CUZ I MALLOCKED */
-	return (0);
+	exit(EXIT_SUCCESS);
 }
-
-/****************
- * known issues *
- ****************/
-
-/* create fprintf */
-/* handle multiple arguments */
-
-/* TO BE COMPLETED COMMENTS ARE CAPITALIZED */
-
-/* all other comments are intended for readibility */
