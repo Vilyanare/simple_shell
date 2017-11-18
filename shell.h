@@ -63,6 +63,12 @@ typedef struct variables
  * Description: This struct is used for printf.
  *    ch will be the primary format specifier ie not a flag!
  */
+typedef struct relations
+{
+	char ch;
+	int (*fp)(va_list);
+} rela_t;
+
 typedef struct builtin_pointers
 {
 	char *usr_str;
@@ -75,7 +81,6 @@ typedef struct builtin_pointers
  ***********************/
 char *getkirby(void);
 /* built-in functions */
-int (*pickBuiltIn(char *s))(/* PUT STRUCT PARAM HERE */
 
 /* strings1 functions */
 char *_strcpy(char *dest, char *src);
