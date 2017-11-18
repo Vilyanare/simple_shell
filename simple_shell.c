@@ -9,52 +9,36 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *s = NULL;
+	l_var vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0};
 	size_t size = 0;
-	pid_t child_pid = 0;
-	char **args = NULL;
-	int status = 0, history = 0;
-	struct stat st;
-	int tokcount = 0;
+	int status = 0;
 	char *delim = "\n ";
 	int ninter = isatty(STDIN_FILENO);
-	l_env *environ = NULL;
+	vars.av = av[0];
 
 	(void) ac;
-	environ = add_envir(env);
+	vars.env = add_envir(env);
+	crte_path(&vars);
 	if (ninter)
 		_puts("$ ");
-	while (getline(&s, &size, stdin) != -1)
+	while (getline(&vars.gets, &size, stdin) != -1)
 	{
-		history++;
+		vars.hist++;
 
-		tokcount = counttok(s, delim);
-		args = tokenizer(s, delim, args);
-		child_pid = fork();
-		if (child_pid == 0)
-		{
-			if (stat(args[0], &st) != 0)
-			{
-				_printf("%s: %d: %s: not found\n", av[0], history, args[0]);
-				exit(127);
-			}
-			execv(args[0], args);
-			/* HANDLE AN ERROR IF EXECV FAILS */
-		}
-		else
-		{
-			wait(&status);
-			if (ninter)
-				_puts("$ ");
-		}
+		vars.args = tokenizer(vars.gets, delim, vars.args);
+		vars.tokc = counttok(vars.gets, delim);
+		search_path(&vars);
+		wait(&status);
+		if (ninter)
+			_puts("$ ");
 	}
-	free(s);
-	free_listenv(environ);
-	if (history)
+	free(vars.gets);
+	free_listenv(vars.env);
+	if (vars.hist)
 	{
-		for ( ; tokcount >= 0; tokcount--)
-			free(args[tokcount]);
-		free(args);
+		for ( ; vars.tokc >= 0; vars.tokc--)
+			free(vars.args[vars.tokc]);
+		free(vars.args);
 	}
 	if (ninter)
 		_puts("\n");

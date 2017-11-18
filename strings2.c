@@ -1,19 +1,51 @@
 #include "shell.h"
 /**
+ *_strcatslash - concatenates two strings and puts a / in the middle
+ *@s1: first string
+ *@s2: second string to add to s1
+ *Return: pointer to concatenated string or NULL on failure
+ */
+char *_strcat(char *s1, char *s2)
+{
+	int x = _strlen(s1), c = _strlen(s2), i = 0, j = 0;
+	int count = _strlen(s1) + _strlen(s2) + 1;
+	char *p = NULL;
+
+	p = malloc((count + 2) * sizeof(char));
+	if (p == NULL)
+		return (NULL);
+	while (i < x || j < c)
+	{
+		if (i == x)
+		{
+			p[i] = '/';
+			i++;
+		}
+		if (i < x)
+		{
+			p[i] = s1[i];
+			i++;
+		}
+		else
+		{
+			p[i + j] = s2[j];
+			j++;
+		}
+	}
+	p[count + 1] = '\0';
+	return (p);
+}
+/**
   * _realloc - reallocates old space to new size (strings only)
   * @ptr: the pointer to the old allocated space of memory
   * @old: size of the old pointer
   * @newsize: The new size wanted in the newly allocated space
   * Return: pointer to the newly allocated space in memory
   */
-
 void *_realloc(void *ptr, int old, int newsize)
 {
-	char *p;
-	char *temp;
-	int i;
+	void *p;
 
-	temp = (char *)ptr;
 	if (newsize == old)
 		return (ptr);
 	if (newsize == 0 && ptr != NULL)
@@ -26,11 +58,6 @@ void *_realloc(void *ptr, int old, int newsize)
 	p = malloc(newsize);
 	if (p == NULL)
 		return (NULL);
-	if (ptr != NULL)
-	{
-		for (i = 0; i < old; i++)
-			p[i] = temp[i];
-	}
 	free(ptr);
 	return (p);
 }
@@ -39,29 +66,33 @@ void *_realloc(void *ptr, int old, int newsize)
  * @s: string to tokenize
  * @delim: delimiter
  * @args: character array
+ * @oldcount: how big old pointer was
  * Return: pointer to array of tokenized strings
  */
-char **tokenizer(char *s, char *delim, char **args)
+char **tokenizer(char *s, char *delim,char **args)
 {
 	int tokcount = counttok(s, delim);
 	int i = 0;
-	static int oldcount = i;
 	char *arg_tmp = NULL;
 
-	args = _realloc(args, oldcount * 8, sizeof(char *) * tokcount);
+	args = _realloc(args, 0, sizeof(char *) * (tokcount + 1));
 	if (args == NULL)
 		return (NULL); /* CHANGE THIS TO SEND TO ERROR_FUNC */
+	while (i < tokcount)
+	{
+		args[i] = NULL;
+		i++;
+	}
 	arg_tmp = _strtok(s, delim);
 	for (i = 0; arg_tmp; i++)
 	{
-		args[i] = _realloc(args[i], _strlen(args[i]), _strlen(arg_tmp) + 1);
+		args[i] = _realloc(args[i], 0, _strlen(arg_tmp) + 1);
 		if (args[i] == NULL)
 			return (NULL); /* CHANGE THIS TO SEND TO ERROR */
 		_strcpy(args[i], arg_tmp);
 		arg_tmp = _strtok(NULL, delim);
 	}
 	args[i] = NULL;
-	oldcount = i;
 	return (args);
 }
 /**

@@ -3,11 +3,16 @@
  * print_envlist - print l_env string members
  * @head: beginning of list to print
  */
-void print_envlist(l_env *head)
+void print_envlist(l_var *vars)
 {
-	_printf("%s=%s\n", head->envvar, head->varval);
-	if (head->next)
-		print_envlist(head->next);
+	l_env *head = vars->env;
+
+	while(head)
+	{
+		_printf("%s=%s\n", head->envvar, head->varval);
+		if (head->next)
+			head = head->next;
+	}
 }
 /**
   *free_listenv - free a l_env
