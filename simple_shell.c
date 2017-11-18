@@ -9,7 +9,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	l_var vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0};
+	l_var vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0};
 	size_t size = 0;
 	int status = 0;
 	char *delim = "\n ";
