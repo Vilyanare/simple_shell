@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- *_strcatslash - concatenates two strings and puts a / in the middle
+ *_strcat - concatenates two strings and puts a / in the middle
  *@s1: first string
  *@s2: second string to add to s1
  *Return: pointer to concatenated string or NULL on failure
@@ -66,10 +66,9 @@ void *_realloc(void *ptr, int old, int newsize)
  * @s: string to tokenize
  * @delim: delimiter
  * @args: character array
- * @oldcount: how big old pointer was
  * Return: pointer to array of tokenized strings
  */
-char **tokenizer(char *s, char *delim,char **args)
+char **tokenizer(char *s, char *delim, char **args)
 {
 	int tokcount = counttok(s, delim);
 	int i = 0;

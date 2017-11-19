@@ -19,34 +19,39 @@ void freefunc(var_t *args)
 	free(args->path);
 }
 /**
- * exit - exits the process
- * @status: a code to determine the status
- * Return: void
+ * exit_new - exits the process
+ * @args: variables struct
  */
 void exit_new(var_t *args)
 {
+	if (args->args[1])
+		if (_atoi(args))
+			args->exitstat = _atoi(args);
 	freefunc(args);
 	exit(args->exitstat);
 }
 /**
  * pickBuiltIn - chooses the appropriate built-in to execute
- * @usr_str: the built-in command to run, which was entered by user
- *
- * Return: a pointer to a built-in program
+ * @s: string to match to function pointer
+ * Return: function pointer matching string
  */
-void (*pickBuiltIn(char *s))(var_t *args)
+void (*pickBuiltIn(var_t *vars))(var_t *args)
 {
 	buil_t blt_ins[] = {
 		{"env",  print_envlist},
 		{"exit", exit_new},
 		{NULL, NULL}
 	};
+	void (*f)(var_t *args);
 	int i;
 
 	for (i = 0; blt_ins[i].usr_str; i++)
 	{
-		if (_strcmp(blt_ins[i].usr_str, s) == 0)
+		if (_strcmp(blt_ins[i].usr_str, vars->args[0]) == 0)
 			break;
 	}
+	f = blt_ins[i].fnc_ptr;
+	if (f)
+		f(vars);
 	return (blt_ins[i].fnc_ptr);
 }

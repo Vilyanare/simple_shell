@@ -13,7 +13,6 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 	size_t size = 0;
 	int status = 0, ninter = isatty(STDIN_FILENO);
 	char *delim = "\n ";
-	void (*f)(var_t *args);
 
 	vars.av = av[0];
 	vars.env = add_envir(env);
@@ -35,9 +34,7 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 				_puts("$ ");
 			continue;
 		}
-		f = pickBuiltIn(vars.args[0]);
-		if (f)
-			f(&vars);
+		pickBuiltIn(&vars);
 		search_path(&vars);
 		wait(&status);
 		vars.exitstat = WEXITSTATUS(status);

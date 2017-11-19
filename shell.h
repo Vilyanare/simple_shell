@@ -87,7 +87,7 @@ typedef struct builtin_pointers
 char *getkirby(void);
 /* built-in functions */
 void exit_new(var_t *args);
-void (*pickBuiltIn(char *s))(var_t *args);
+void (*pickBuiltIn(var_t *vars))(var_t *args);
 /* strings1 functions */
 char *_strcpy(char *dest, char *src);
 int _puts(char *s);
@@ -102,6 +102,7 @@ int counttok(char *s, char *delim);
 char *_strtok(char *s, char *delim);
 /* strings 3 functions */
 int _strcmp(char *s1, char *s2);
+int _atoi(var_t *vars);
 /* environment handling functions */
 size_t list_lenenv(const l_env *h);
 void free_listenv(l_env *head);

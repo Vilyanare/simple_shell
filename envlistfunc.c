@@ -1,13 +1,13 @@
 #include "shell.h"
 /**
  * print_envlist - print l_env string members
- * @head: beginning of list to print
+ * @vars: variables struct
  */
 void print_envlist(var_t *vars)
 {
 	l_env *head = vars->env;
 
-	while(head)
+	while (head)
 	{
 		_printf("%s=%s\n", head->envvar, head->varval);
 		if (head->next)

@@ -7,7 +7,7 @@ void crte_path(var_t *vars)
 {
 	l_env *head = vars->env;
 
-	while(head->next)
+	while (head->next)
 	{
 		if (_strcmp(head->envvar, "PATH") == 0)
 		{
@@ -17,12 +17,11 @@ void crte_path(var_t *vars)
 		}
 		head = head->next;
 	}
-		
+
 }
 /**
  * search_path - look in PATH for functions and execute them
- * @head: beginning of environment linked list
- * @args: function and arguments in a string array
+ * @vars: variable struct
  */
 void search_path(var_t *vars)
 {
