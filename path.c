@@ -49,16 +49,15 @@ void search_path(var_t *vars)
 	{
 		if (stat(vars->args[0], &st))
 		{
-			_printf("%s: %d: %s: not found\n", vars->av, vars->hist, vars->args[0]);
+			_eprintf("%s: %d: %s: not found\n", vars->av, vars->hist, vars->args[0]);
 			exit(127);
 		}
 		if (!(S_ISREG(st.st_mode)))
 		{
-			_printf("%s: %d: %s: Permission denied\n", vars->av, vars->hist, vars->args[0]);
-			exit(127);
+			_eprintf("%s: %d: %s: Permission denied\n", vars->av, vars->hist, vars->args[0]);
+			exit(126);
 
 		}
-
 		execv(vars->args[0], vars->args);
 		/* HANDLE AN ERROR IF EXECV FAILS */
 	}

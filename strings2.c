@@ -84,7 +84,7 @@ char **tokenizer(char *s, char *delim,char **args)
 		i++;
 	}
 	arg_tmp = _strtok(s, delim);
-	for (i = 0; arg_tmp; i++)
+	for (i = 0; i < tokcount; i++)
 	{
 		args[i] = _realloc(args[i], 0, _strlen(arg_tmp) + 1);
 		if (args[i] == NULL)
@@ -108,16 +108,19 @@ int counttok(char *s, char *delim)
 
 	if (s == NULL)
 		return (0);
-	for (count = 1; s[x]; x++)
+	for (count = 0; s[x]; x++)
 	{
 		if (_strchr(delim, s[x]) && f == 0)
 		{
-			f = 1;
-			if (s[x + 1] != 0 && x != 0)
+			if (x != 0)
 				count++;
+			f = 1;
 		}
-		else
+		if (_strchr(delim, s[x]) == 0)
+		{
 			f = 0;
+		}
+
 	}
 	return (count);
 }

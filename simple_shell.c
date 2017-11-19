@@ -22,12 +22,11 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 		_puts("$ ");
 	while (getline(&vars.gets, &size, stdin) != -1)
 	{
+		vars.exitstat = EXIT_SUCCESS;
 		vars.hist++;
 		if (vars.tokc)
-		{
 			for (; vars.tokc >= 0; vars.tokc--)
 				free(vars.args[vars.tokc]);
-		}
 		vars.tokc = counttok(vars.gets, delim);
 		vars.args = tokenizer(vars.gets, delim, vars.args);
 		if (vars.gets[0] == '\n')
@@ -41,6 +40,7 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 			f(&vars);
 		search_path(&vars);
 		wait(&status);
+		vars.exitstat = WEXITSTATUS(status);
 		if (ninter)
 			_puts("$ ");
 		free(vars.gets);
@@ -49,5 +49,5 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 	freefunc(&vars);
 	if (ninter)
 		_puts("\n");
-	exit(EXIT_SUCCESS);
+	exit(vars.exitstat);
 }
