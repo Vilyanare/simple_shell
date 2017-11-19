@@ -55,8 +55,7 @@ typedef struct variables
 	int hist;
 	int ptok;
 	int exitstat;
-} l_var;
-
+} var_t;
 /**
  * struct relations - draws a relationship between a frmt spec and a f-ptr
  * @ch: the format specifier
@@ -78,7 +77,7 @@ typedef struct relations
 typedef struct builtin_pointers
 {
 	char *usr_str;
-	void (*fnc_ptr)(l_var *args);
+	void (*fnc_ptr)(var_t *args);
 } buil_t;
 
 
@@ -87,7 +86,8 @@ typedef struct builtin_pointers
  ***********************/
 char *getkirby(void);
 /* built-in functions */
-
+void exit_new(var_t *args);
+void (*pickBuiltIn(char *s))(var_t *args);
 /* strings1 functions */
 char *_strcpy(char *dest, char *src);
 int _puts(char *s);
@@ -107,15 +107,12 @@ size_t list_lenenv(const l_env *h);
 void free_listenv(l_env *head);
 l_env *add_envir(char **env);
 l_env *add_node_endenv(l_env **head, char *s);
-void print_envlist(l_var *vars);
-/* builtins */
-void exit_new(l_var *args);
-void (*pickBuiltIn(char *s))(l_var *args);
+void print_envlist(var_t *vars);
 /* path handling functions */
-void search_path(l_var *vars);
-void crte_path(l_var *vars);
+void search_path(var_t *vars);
+void crte_path(var_t *vars);
 /* exit handling */
-void freefunc(l_var *args);
+void freefunc(var_t *args);
 /* _printf functions */
 int _printf(const char *format, ...);
 int (*func_pick(char s))(va_list);

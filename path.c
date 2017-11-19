@@ -3,7 +3,7 @@
  * crte_path - create the path array
  * @vars: variable struct
  */
-void crte_path(l_var *vars)
+void crte_path(var_t *vars)
 {
 	l_env *head = vars->env;
 
@@ -24,7 +24,7 @@ void crte_path(l_var *vars)
  * @head: beginning of environment linked list
  * @args: function and arguments in a string array
  */
-void search_path(l_var *vars)
+void search_path(var_t *vars)
 {
 	pid_t child_pid = 0;
 	struct stat st;

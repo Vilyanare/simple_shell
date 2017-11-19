@@ -11,7 +11,7 @@ char *_strcat(char *s1, char *s2)
 	int count = _strlen(s1) + _strlen(s2) + 1;
 	char *p = NULL;
 
-	p = malloc((count + 2) * sizeof(char));
+	p = malloc((count + 1) * sizeof(char));
 	if (p == NULL)
 		return (NULL);
 	while (i < x || j < c)
@@ -32,7 +32,7 @@ char *_strcat(char *s1, char *s2)
 			j++;
 		}
 	}
-	p[count + 1] = '\0';
+	p[i + j] = '\0';
 	return (p);
 }
 /**

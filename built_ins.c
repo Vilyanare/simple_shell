@@ -6,7 +6,7 @@
  *
  * Return: a pointer to a built-in program
  */
-void (*pickBuiltIn(char *s))(l_var *args)
+void (*pickBuiltIn(char *s))(var_t *args)
 {
 	buil_t blt_ins[] = {
 		{"env",  print_envlist},
@@ -15,9 +15,9 @@ void (*pickBuiltIn(char *s))(l_var *args)
 	};
 	int i;
 
-	for (i = 0; blt_ins[i].usr_str != NULL; i++)
+	for (i = 0; blt_ins[i].usr_str; i++)
 	{
-		if (blt_ins[i].usr_str == s)
+		if (_strcmp(blt_ins[i].usr_str, s) == 0)
 			break;
 	}
 	return (blt_ins[i].fnc_ptr);

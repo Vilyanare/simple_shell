@@ -9,13 +9,13 @@
  */
 int main(__attribute__((unused))int ac, char **av, char **env)
 {
-	l_var vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0};
+	var_t vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0};
 	size_t size = 0;
-	int status = 0;
+	int status = 0, ninter = isatty(STDIN_FILENO);
 	char *delim = "\n ";
-	int ninter = isatty(STDIN_FILENO);
-	vars.av = av[0];
+	void (*f)(var_t *args);
 
+	vars.av = av[0];
 	vars.env = add_envir(env);
 	crte_path(&vars);
 	if (ninter)
@@ -36,6 +36,9 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 				_puts("$ ");
 			continue;
 		}
+		f = pickBuiltIn(vars.args[0]);
+		if (f)
+			f(&vars);
 		search_path(&vars);
 		wait(&status);
 		if (ninter)

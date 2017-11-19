@@ -3,7 +3,7 @@
  * freefunc - frees everything. at exit function
  * @args: l_var struct of things I need to free
  */
-void freefunc(l_var *args)
+void freefunc(var_t *args)
 {
 	if (args->gets)
 		free(args->gets);

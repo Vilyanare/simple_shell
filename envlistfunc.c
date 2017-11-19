@@ -3,7 +3,7 @@
  * print_envlist - print l_env string members
  * @head: beginning of list to print
  */
-void print_envlist(l_var *vars)
+void print_envlist(var_t *vars)
 {
 	l_env *head = vars->env;
 
@@ -12,6 +12,8 @@ void print_envlist(l_var *vars)
 		_printf("%s=%s\n", head->envvar, head->varval);
 		if (head->next)
 			head = head->next;
+		else
+			break;
 	}
 }
 /**

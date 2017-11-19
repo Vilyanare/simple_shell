@@ -5,7 +5,8 @@
  * @status: a code to determine the status
  * Return: void
  */
-void exit_new(l_var *args)
+void exit_new(var_t *args)
 {
-	_exit(args->exitstat);
+	freefunc(args);
+	exit(args->exitstat);
 }
