@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- *_strcatslash - concatenates two strings and puts a / in the middle
+ *_strcat - concatenates two strings and puts a / in the middle
  *@s1: first string
  *@s2: second string to add to s1
  *Return: pointer to concatenated string or NULL on failure
@@ -11,7 +11,7 @@ char *_strcat(char *s1, char *s2)
 	int count = _strlen(s1) + _strlen(s2) + 1;
 	char *p = NULL;
 
-	p = malloc((count + 2) * sizeof(char));
+	p = malloc((count + 1) * sizeof(char));
 	if (p == NULL)
 		return (NULL);
 	while (i < x || j < c)
@@ -32,7 +32,7 @@ char *_strcat(char *s1, char *s2)
 			j++;
 		}
 	}
-	p[count + 1] = '\0';
+	p[i + j] = '\0';
 	return (p);
 }
 /**
@@ -66,10 +66,9 @@ void *_realloc(void *ptr, int old, int newsize)
  * @s: string to tokenize
  * @delim: delimiter
  * @args: character array
- * @oldcount: how big old pointer was
  * Return: pointer to array of tokenized strings
  */
-char **tokenizer(char *s, char *delim,char **args)
+char **tokenizer(char *s, char *delim, char **args)
 {
 	int tokcount = counttok(s, delim);
 	int i = 0;
@@ -84,7 +83,7 @@ char **tokenizer(char *s, char *delim,char **args)
 		i++;
 	}
 	arg_tmp = _strtok(s, delim);
-	for (i = 0; arg_tmp; i++)
+	for (i = 0; i < tokcount; i++)
 	{
 		args[i] = _realloc(args[i], 0, _strlen(arg_tmp) + 1);
 		if (args[i] == NULL)
@@ -108,16 +107,19 @@ int counttok(char *s, char *delim)
 
 	if (s == NULL)
 		return (0);
-	for (count = 1; s[x]; x++)
+	for (count = 0; s[x]; x++)
 	{
 		if (_strchr(delim, s[x]) && f == 0)
 		{
-			f = 1;
-			if (s[x + 1] && x != 0)
+			if (x != 0)
 				count++;
+			f = 1;
 		}
-		else
+		if (_strchr(delim, s[x]) == 0)
+		{
 			f = 0;
+		}
+
 	}
 	return (count);
 }

@@ -5,6 +5,7 @@
 /****************************
  * directives and libraries *
  ****************************/
+#include <signal.h>
 #include <sys/stat.h>
 #include <string.h>
 #include <stdio.h>
@@ -42,6 +43,7 @@ typedef struct list_environ
  * @av: name of program
  * @hist: how many lines have been executed
  * @ptok: path token count
+ * @exitstat: exit status to send to error program
  */
 typedef struct variables
 {
@@ -53,8 +55,9 @@ typedef struct variables
 	char *av;
 	int hist;
 	int ptok;
-} l_var;
-
+	int exitstat;
+	char *delim;
+} var_t;
 /**
  * struct relations - draws a relationship between a frmt spec and a f-ptr
  * @ch: the format specifier
@@ -68,11 +71,15 @@ typedef struct relations
 	char ch;
 	int (*fp)(va_list);
 } rela_t;
-
+/**
+ * struct builtin_pointers - struct to handle builtins
+ * @usr_str: string to match to user input
+ * @fnc_ptr: function to execute on match
+ */
 typedef struct builtin_pointers
 {
 	char *usr_str;
-	void (*fnc_ptr)(/* struct name goes here */);
+	void (*fnc_ptr)(var_t *args);
 } buil_t;
 
 
@@ -81,7 +88,8 @@ typedef struct builtin_pointers
  ***********************/
 char *getkirby(void);
 /* built-in functions */
-
+void exit_new(var_t *args);
+void (*pickBuiltIn(var_t *vars))(var_t *args);
 /* strings1 functions */
 char *_strcpy(char *dest, char *src);
 int _puts(char *s);
@@ -96,15 +104,19 @@ int counttok(char *s, char *delim);
 char *_strtok(char *s, char *delim);
 /* strings 3 functions */
 int _strcmp(char *s1, char *s2);
+int _atoi(var_t *vars);
+
 /* environment handling functions */
 size_t list_lenenv(const l_env *h);
 void free_listenv(l_env *head);
 l_env *add_envir(char **env);
 l_env *add_node_endenv(l_env **head, char *s);
-void print_envlist(l_var *vars);
+void print_envlist(var_t *vars);
 /* path handling functions */
-void search_path(l_var *vars);
-void crte_path(l_var *vars);
+void search_path(var_t *vars);
+void crte_path(var_t *vars);
+/* exit handling */
+void freefunc(var_t *args);
 /* _printf functions */
 int _printf(const char *format, ...);
 int (*func_pick(char s))(va_list);
