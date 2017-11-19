@@ -32,7 +32,7 @@ void exit_new(var_t *args)
 }
 /**
  * pickBuiltIn - chooses the appropriate built-in to execute
- * @s: string to match to function pointer
+ * @vars: variable struct
  * Return: function pointer matching string
  */
 void (*pickBuiltIn(var_t *vars))(var_t *args)

@@ -5,6 +5,7 @@
 /****************************
  * directives and libraries *
  ****************************/
+#include <signal.h>
 #include <sys/stat.h>
 #include <string.h>
 #include <stdio.h>
@@ -55,6 +56,7 @@ typedef struct variables
 	int hist;
 	int ptok;
 	int exitstat;
+	char *delim;
 } var_t;
 /**
  * struct relations - draws a relationship between a frmt spec and a f-ptr
@@ -103,6 +105,7 @@ char *_strtok(char *s, char *delim);
 /* strings 3 functions */
 int _strcmp(char *s1, char *s2);
 int _atoi(var_t *vars);
+
 /* environment handling functions */
 size_t list_lenenv(const l_env *h);
 void free_listenv(l_env *head);

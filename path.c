@@ -29,6 +29,7 @@ void search_path(var_t *vars)
 	struct stat st;
 	int x = 0;
 	char *temp = NULL;
+	char *s = vars->args[0];
 
 	while (vars->path[x])
 	{
@@ -48,12 +49,12 @@ void search_path(var_t *vars)
 	{
 		if (stat(vars->args[0], &st))
 		{
-			_eprintf("%s: %d: %s: not found\n", vars->av, vars->hist, vars->args[0]);
+			_eprintf("%s: %d: %s: not found\n", vars->av, vars->hist, s);
 			exit(127);
 		}
 		if (!(S_ISREG(st.st_mode)))
 		{
-			_eprintf("%s: %d: %s: Permission denied\n", vars->av, vars->hist, vars->args[0]);
+			_eprintf("%s: %d: %s: Permission denied\n", vars->av, vars->hist, s);
 			exit(126);
 
 		}
