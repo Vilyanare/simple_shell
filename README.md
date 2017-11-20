@@ -1,32 +1,18 @@
 <a href="url"><img src="https://c.pxhere.com/photos/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d" align="middle" width="100" height="100"></a>  __simple_shell__
 
-
-## Authors
-  * Thomas Dumont - github: `vilyanare`
-  * Jacob Hartman - github: `JacobBHartman`
-
-## Learning Objectives
+## Objectives
   * __Write a simple UNIX command interpreter__
-  * History of UNIX, shell versions, B language, Ken Thompson; How a shell works; What is a process, pid, and ppid; functions vs system calls; How to manipulate the environment of a process; How shell uses `PATH`; How to use `execve`; What is `EOF`
+  * Learn about the history of UNIX, shell versions, B language, Ken Thompson; How a shell works; What is a process, pid, and ppid; functions vs system calls; How to manipulate the environment of a process; How shell uses `PATH`; How to use `execve`; What is `EOF`
 
-## System and Compilation
+## System and Environment
   * Compiler: `gcc 4.8.4`
-  * Compile using: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
   * Tested on Ubuntu 14.04 LTS using Vagrant in VirtualBox
-  * Install by using `git clone https://github.com/Vilyanare/simple_shell.git`
 
-## Constraints
-  * No more than 5 functions per file
-  * Program must have the exact same output as `sh` (`/bin/sh`)
-  * `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
-  * Only certain functions were allowed; many `STL` functions were recreated
-  * Those functions allowed are: `access`, `chdir`, `close`, `closedir`, `execve`, `exit`, `fork`, `free`, `stat`, `lstat`, `fstat`, `getcwd`, `getline`, `kill`, `malloc`, `open`, `opendir`, `perror`, `read`, `readdir`, `signal`, `strtok`, `wait`, `waitpid`, `wait3`, `wait4`, `write`, `_exit`, `isatty`, `fflush`
-
-## Prototype
-
-## Tasks
-
-## Functions
+## Installation
+  * Clone the repository: `git clone https://github.com/Vilyanare/simple_shell.git`
+  * Change into the proper directory: `cd simple_shell`
+  * Compile using: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
+  * Run in interactive mode: `./hsh`
 
 ## File Descriptions
 ---
@@ -42,6 +28,18 @@ File | Description
 `strings1.c` | custom versions of `strcpy`, `strlen`, `puts`, `strchr`, `strdup`
 `strings2.c` | custom versions of `strcat`, `realloc`, `strtok`, and tokenizer-related functions
 `strings3.c` | custom versions of `strcmp` and `atoi`
+
+## Constraints
+  * No more than 5 functions per file
+  * Program must have the exact same output as `sh` (`/bin/sh`)
+  * `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
+  * Only certain functions were allowed; many `STL` functions were recreated
+  * Those functions allowed are: `access`, `chdir`, `close`, `closedir`, `execve`, `exit`, `fork`, `free`, `stat`, `lstat`, `fstat`, `getcwd`, `getline`, `kill`, `malloc`, `open`, `opendir`, `perror`, `read`, `readdir`, `signal`, `strtok`, `wait`, `waitpid`, `wait3`, `wait4`, `write`, `_exit`, `isatty`, `fflush`
+
+## Authors
+  * Thomas Dumont - github: `vilyanare`
+  * Jacob Hartman - github: `JacobBHartman`
+
 
 ## Comment(s) by Jacob
 Focus should obviously be placed on completing the mandatory. That being said,
