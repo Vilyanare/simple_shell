@@ -43,7 +43,9 @@ vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$
 
 ## File Descriptions
 
+
 Files not described: `.gitignore`, `AUTHORS`, `README.md`
+
 ---
 File | Description
 --- | ---
