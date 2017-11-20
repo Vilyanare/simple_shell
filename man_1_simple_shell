@@ -44,13 +44,25 @@ This program will read from the terminal and files. Once entered the shell will 
 
 
 
-.SH COMPILATION
-To compile
+.SH INSTALLATION
+To install
 .B hsh
-use the GNU Compiler Collection in the following manner:
 
+Clone the repository:
 .RS
-$ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+git clone https://github.com/Vilyanare/simple_shell.git
+.RE
+Change into the proper directory:
+.RS
+cd simple_shell
+.RE
+Compile using:
+.RS
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+.RE
+Run in interactive mode:
+.RS
+.B ./hsh
 .RE
 
 
