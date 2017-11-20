@@ -15,33 +15,37 @@
   * Run in interactive mode: `./hsh`
 
 ## Usage Example
-
-`vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ ./hsh`
-`$ ls -la`
-`total 92`
-`drwxrwxr-x  4 vagrant vagrant  4096 Nov 20 07:34 .`
-`drwxr-xr-x 11 vagrant vagrant  4096 Nov 20 01:16 ..`
-`-rw-rw-r--  1 vagrant vagrant   144 Nov 20 07:29 AUTHORS`
-`-rw-rw-r--  1 vagrant vagrant  1130 Nov 19 23:31 built_ins.c`
-`-rw-rw-r--  1 vagrant vagrant  1675 Nov 19 23:31 envlistfunc.c`
-`-rw-rw-r--  1 vagrant vagrant  3201 Nov 18 02:39 _eprintf.c`
-`drwxrwxr-x  8 vagrant vagrant  4096 Nov 20 07:35 .git`
-`-rw-rw-r--  1 vagrant vagrant    39 Nov 15 23:55 .gitignore`
-`-rwxrwxr-x  1 vagrant vagrant 18692 Nov 20 03:21 hsh`
-`-rw-rw-r--  1 vagrant vagrant  1484 Nov 20 07:24 man_1_simple_shell`
-`-rw-rw-r--  1 vagrant vagrant  1195 Nov 19 23:31 path.c`
-`-rw-rw-r--  1 vagrant vagrant  3183 Nov 15 22:19 _printf.c`
-`-rw-rw-r--  1 vagrant vagrant  2364 Nov 20 07:34 README.md`
-`-rw-rw-r--  1 vagrant vagrant  3189 Nov 19 23:31 shell.h`
-`drwxrwxr-x  3 vagrant vagrant  4096 Nov 20 07:34 simple_shell`
-`-rw-rw-r--  1 vagrant vagrant  1098 Nov 20 01:51 simple_shell.c`
-`-rw-rw-r--  1 vagrant vagrant  1363 Nov 18 02:39 strings1.c`
-`-rw-rw-r--  1 vagrant vagrant  3032 Nov 19 23:31 strings2.c`
-`-rw-rw-r--  1 vagrant vagrant  1099 Nov 19 23:31 strings3.c`
-`$ exit`
-`vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ `
+```
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ ./hsh
+$ ls -la
+total 92
+drwxrwxr-x  4 vagrant vagrant  4096 Nov 20 07:34 .
+drwxr-xr-x 11 vagrant vagrant  4096 Nov 20 01:16 ..
+-rw-rw-r--  1 vagrant vagrant   144 Nov 20 07:29 AUTHORS
+-rw-rw-r--  1 vagrant vagrant  1130 Nov 19 23:31 built_ins.c
+-rw-rw-r--  1 vagrant vagrant  1675 Nov 19 23:31 envlistfunc.c
+-rw-rw-r--  1 vagrant vagrant  3201 Nov 18 02:39 _eprintf.c
+drwxrwxr-x  8 vagrant vagrant  4096 Nov 20 07:35 .git
+-rw-rw-r--  1 vagrant vagrant    39 Nov 15 23:55 .gitignore
+-rwxrwxr-x  1 vagrant vagrant 18692 Nov 20 03:21 hsh
+-rw-rw-r--  1 vagrant vagrant  1484 Nov 20 07:24 man_1_simple_shell
+-rw-rw-r--  1 vagrant vagrant  1195 Nov 19 23:31 path.c
+-rw-rw-r--  1 vagrant vagrant  3183 Nov 15 22:19 _printf.c
+-rw-rw-r--  1 vagrant vagrant  2364 Nov 20 07:34 README.md
+-rw-rw-r--  1 vagrant vagrant  3189 Nov 19 23:31 shell.h
+-rw-rw-r--  1 vagrant vagrant  1098 Nov 20 01:51 simple_shell.c
+-rw-rw-r--  1 vagrant vagrant  1363 Nov 18 02:39 strings1.c
+-rw-rw-r--  1 vagrant vagrant  3032 Nov 19 23:31 strings2.c
+-rw-rw-r--  1 vagrant vagrant  1099 Nov 19 23:31 strings3.c
+$ exit
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$
+```
 
 ## File Descriptions
+
+
+Files not described: `.gitignore`, `AUTHORS`, `README.md`
+
 ---
 File | Description
 --- | ---
