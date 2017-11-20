@@ -1,5 +1,4 @@
-# <a href="url"><img src="https://c.pxhere.com/phot\
-os/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d" align="middle" width="100" height="100"></a> simple_shell
+# <a href="url"><img src="https://c.pxhere.com/photos/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d" align="middle" width="100" height="100"></a> simple_shell
 
 
 ## Authors
