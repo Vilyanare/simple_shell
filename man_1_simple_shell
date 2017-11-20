@@ -9,9 +9,16 @@
 
 
 .SH SYNOPSIS
+interactive mode:
 .B ./hsh
 
+Once invoked in interactive mode, shell commands may be entered after the
+.B "$"
 
+non-interactive mode:
+.B ./hsh
+.I COMMAND
+.I [ARGUMENT]
 
 .SH DESCRIPTION
 .B hsh
@@ -60,7 +67,15 @@ echo "ls" | ./hsh
 
 
 .SH BUILT-INS
-.
+.PP
+exit - a reproduction of the
+.B sh
+version of exit. Exits the shell.
+.PP
+env - a reproduction of the
+.B sh
+version of env. Prints the current environment.
+
 
 .SH SEE ALSO
 sh(1)
@@ -78,3 +93,11 @@ is inspired by
 Bugs are expected if any command is executed that isn't in the
 .I /bin/
 directory, or if it is not one of the listed built-ins.
+.PP
+Aliases are not supported.
+.PP
+
+
+
+.SH AUTHOR
+Written by Thomas Dumont with assistance from Jacob Hartman.
