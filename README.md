@@ -1,36 +1,36 @@
-# a simple shell project
 <br>
-<img width="100" height="100" src="https://c.pxhere.com/photos/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d")
+<img align="middle" width="100" height="100" src="https://c.pxhere.com/photos/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d")
+simple_shell
 <br>
 
-### Authors
+## Authors
   * Thomas Dumont - github: `vilyanare`
   * Jacob Hartman - github: `JacobBHartman`
 
-### Learning Objectives
+## Learning Objectives
   * __Write a simple UNIX command interpreter__
   * History of UNIX, shell versions, B language, Ken Thompson; How a shell works; What is a process, pid, and ppid; functions vs system calls; How to manipulate the environment of a process; How shell uses `PATH`; How to use `execve`; What is `EOF`
 
-### System and Compilation
+## System and Compilation
   * Compiler: `gcc 4.8.4`
   * Compile using: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
   * Tested on Ubuntu 14.04 LTS using Vagrant in VirtualBox
   * Install by using `git clone https://github.com/Vilyanare/simple_shell.git`
 
-### Constraints
+## Constraints
   * No more than 5 functions per file
   * Program must have the exact same output as `sh` (`/bin/sh`)
   * `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
   * Only certain functions were allowed; many `STL` functions were recreated
-  * Those functions are: `access`, `chdir`, `close`, `closedir`, `execve`, `exit`, `fork`, `free`, `stat`, `lstat`, `fstat`, `getcwd`, `getline`, `kill`, `malloc`, `open`, `opendir`, `perror`, `read`, `readdir`, `signal`, `strtok`, `wait`, `waitpid`, `wait3`, `wait4`, `write`, `_exit`, `isatty`, `fflush`
+  * Those functions allowed are: `access`, `chdir`, `close`, `closedir`, `execve`, `exit`, `fork`, `free`, `stat`, `lstat`, `fstat`, `getcwd`, `getline`, `kill`, `malloc`, `open`, `opendir`, `perror`, `read`, `readdir`, `signal`, `strtok`, `wait`, `waitpid`, `wait3`, `wait4`, `write`, `_exit`, `isatty`, `fflush`
 
-### Prototype
+## Prototype
 
-### Tasks
+## Tasks
 
-### Functions
+## Functions
 
-### File Descriptions
+## File Descriptions
 ---
 File | Description
 --- | ---
@@ -45,7 +45,7 @@ File | Description
 `strings2.c` | custom versions of `strcat`, `realloc`, `strtok`, and tokenizer-related functions
 `strings3.c` | custom versions of `strcmp` and `atoi`
 
-### Comment(s) by Jacob
+## Comment(s) by Jacob
 Focus should obviously be placed on completing the mandatory. That being said,
 when I go through to clean-up for Betty, I would like to do the following.
 1. variable and function names
