@@ -3,31 +3,25 @@
 
 # a simple shell project
 
-#AUTHORS
+### Authors
   * Thomas Dumont - github: `vilyanare`
   * Jacob Hartman - github: `JacobBHartman`
 
 ### Learning Objectives
   * __Write a simple UNIX command interpreter__
-  * History of UNIX, shell versions, B language, Ken Thompson
-  * How a shell works
-  * What is a process, pid, and ppid
-  * functions vs system calls
-  * How to manipulate the environment of a process
-  * How shell uses `PATH`
-  * How to use `execve`
-  * What is `EOF`
+  * History of UNIX, shell versions, B language, Ken Thompson; How a shell works; What is a process, pid, and ppid; functions vs system calls; How to manipulate the environment of a process; How shell uses `PATH`; How to use `execve`; What is `EOF`
 
 ### System and Compilation
-  * All files can be compiled on Ubuntu 14.04 LTS
-  * `gcc 4.8.4`
-  * `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh``
+  * Compiler: `gcc 4.8.4`
+  * Compile using: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
+  * Tested on Ubuntu 14.04 LTS using Vagrant in VirtualBox
+  * Install by using https://github.com/holbertonschool/Betty/wiki
 
 ### Constraints
   * No more than 5 functions per file
   * Program must have the exact same output as `sh` (`/bin/sh`)
   * Only certain functions were allowed; many `STL` functions were recreated
-  * `Betty` styling
+  * `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
 
 ### Prototype
 
@@ -35,7 +29,7 @@
 
 ### Functions
 
-### file and folder descriptions
+### File Descriptions
 ---
 File | Description
 --- | ---
@@ -47,15 +41,8 @@ File | Description
 `shell.h` | contains directives, libraries, structures, and function prototypes
 `simple_shell.c` | the `main` file that executes the shell
 `strings1.c` | custom versions of `strcpy`, `strlen`, `puts`, `strchr`, `strdup`
-`strings2.c` | custom versions of `strcat`, `realloc`, `strtok`, and tokenizer-\
-related functions
-`strings3.c` | custom cersions of `strcmp` and `atoi`
-
-##### code files
-  * _printf.c
-  * shell.h
-  * simple_shell.c
-  * strings1.c
+`strings2.c` | custom versions of `strcat`, `realloc`, `strtok`, and tokenizer-related functions
+`strings3.c` | custom versions of `strcmp` and `atoi`
 
 ### Comment(s) by Jacob
 Focus should obviously be placed on completing the mandatory. That being said,
@@ -78,10 +65,3 @@ when I go through to clean-up for Betty, I would like to do the following.
     assign it the value of ":". do this for functions other than strtok as well.
 5. make sure we are not using any of the functions we're not allowed to use
 
-### Candidate names for the shell
-Top 3
-
-4-letter: cash, rash, tush, mush
-5-letter: GNUsh
-6-letter: delish
-standoffish
