@@ -1,6 +1,7 @@
 <br>
-<img height="700" width="700" src="https://c.pxhere.com/photos/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d">
+<img height="100" width="100" src="https://c.pxhere.com/photos/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d">
 <br>
+
 # a simple shell project
 
 ### Authors
