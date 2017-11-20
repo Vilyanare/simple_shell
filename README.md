@@ -3,6 +3,7 @@
 <br>
 
 # a simple shell project
+![delicious](https://c.pxhere.com/photos/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d =100x100)
 
 ### Authors
   * Thomas Dumont - github: `vilyanare`
