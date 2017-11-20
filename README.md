@@ -1,6 +1,6 @@
-
-## nice pic goes here
-
+<br>
+<img height="700" width="700" src="https://c.pxhere.com/photos/f3/90/peanuts_nuts_snack_nutrition_healthy_nibble_decoration_close-842313.jpg!d">
+<br>
 # a simple shell project
 
 ### Authors
@@ -15,14 +15,14 @@
   * Compiler: `gcc 4.8.4`
   * Compile using: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
   * Tested on Ubuntu 14.04 LTS using Vagrant in VirtualBox
-  * Install by using https://github.com/holbertonschool/Betty/wiki
+  * Install by using `git clone https://github.com/Vilyanare/simple_shell.git`
 
 ### Constraints
   * No more than 5 functions per file
   * Program must have the exact same output as `sh` (`/bin/sh`)
-  * Only certain functions were allowed; many `STL` functions were recreated
   * `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
-
+  * Only certain functions were allowed; many `STL` functions were recreated
+  * those functions allowed are: 
 ### Prototype
 
 ### Tasks
