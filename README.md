@@ -22,7 +22,8 @@
   * Program must have the exact same output as `sh` (`/bin/sh`)
   * `Betty` [styling](https://github.com/holbertonschool/Betty/wiki)
   * Only certain functions were allowed; many `STL` functions were recreated
-  * those functions allowed are: 
+  ..* `access`, `chdir`, `close`, `closedir`, `execve`, `exit`, `fork`, `free`, `stat`, `lstat`, `fstat`, `getcwd`, `getline`, `kill`, `malloc`, `open`, `opendir`, `perror`, `read`, `readdir`, `signal`, `strtok`, `wait`, `waitpid`, `wait3`, `wait4`, `write`, `_exit`, `isatty`, `fflush`
+
 ### Prototype
 
 ### Tasks
