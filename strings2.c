@@ -28,7 +28,7 @@ char *_strcat(char *s1, char *s2)
 		}
 	}
 	p[i + j] = '\0';
-	if(s1 != NULL)
+	if (s1 != NULL)
 		free(s1);
 	if (s2 != NULL)
 		free(s2);
@@ -75,7 +75,7 @@ char **tokenizer(char *s, char *delim, char **args)
 
 	args = _realloc(args, 0, sizeof(char *) * (tokcount + 1));
 	if (args == NULL)
-		return (NULL); /* CHANGE THIS TO SEND TO ERROR_FUNC */
+		return (NULL);
 	while (i < tokcount)
 	{
 		args[i] = NULL;
@@ -86,7 +86,7 @@ char **tokenizer(char *s, char *delim, char **args)
 	{
 		args[i] = _realloc(args[i], 0, _strlen(arg_tmp) + 1);
 		if (args[i] == NULL)
-			return (NULL); /* CHANGE THIS TO SEND TO ERROR */
+			return (NULL);
 		_strcpy(args[i], arg_tmp);
 		arg_tmp = _strtok(NULL, delim);
 	}

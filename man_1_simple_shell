@@ -22,7 +22,7 @@ non-interactive mode:
 
 .SH DESCRIPTION
 .B hsh
-is a custom-made command interpreter created for the purpose(s) of demonstrating the creator(s) knowledge in the C programming language. This shell is very limited in its scope, but nonetheless has been designed to accomadate future functionality. Many commands commonly found in 
+is a custom-made command interpreter created for the purpose(s) of demonstrating the creator(s) knowledge in the C programming language. This shell is very limited in its scope, but nonetheless has been designed to accomadate future functionality. Many commands commonly found in
 .I /bin
 are supported such as
 .B ls
