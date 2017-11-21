@@ -8,7 +8,7 @@
 char *_strcat(char *s1, char *s2)
 {
 	int x = _strlen(s1), c = _strlen(s2), i = 0, j = 0;
-	int count = _strlen(s1) + _strlen(s2) + 1;
+	int count = _strlen(s1) + _strlen(s2);
 	char *p = NULL;
 
 	p = malloc((count + 1) * sizeof(char));
@@ -16,11 +16,6 @@ char *_strcat(char *s1, char *s2)
 		return (NULL);
 	while (i < x || j < c)
 	{
-		if (i == x)
-		{
-			p[i] = '/';
-			i++;
-		}
 		if (i < x)
 		{
 			p[i] = s1[i];
@@ -33,6 +28,10 @@ char *_strcat(char *s1, char *s2)
 		}
 	}
 	p[i + j] = '\0';
+	if(s1 != NULL)
+		free(s1);
+	if (s2 != NULL)
+		free(s2);
 	return (p);
 }
 /**

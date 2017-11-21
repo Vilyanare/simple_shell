@@ -33,7 +33,9 @@ void search_path(var_t *vars)
 
 	while (vars->path[x])
 	{
-		temp = _strcat(vars->path[x], vars->args[0]);
+		if (vars->args[0][0] == '.' && vars->args[0][1] == '/')
+			break;
+		temp = vstrcat(3, vars->path[x], "/", vars->args[0]);
 		if (stat(temp, &st) == 0 && S_ISREG(st.st_mode))
 		{
 			free(vars->args[0]);

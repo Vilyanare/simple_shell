@@ -1,5 +1,14 @@
 #include "shell.h"
 /**
+ * _sigign - prints a new line when sigint is sent
+ * @sig: signal sent
+ */
+void _sigign(int sig)
+{
+	if (sig == SIGINT)
+		_printf("\n$ ");
+}
+/**
  * freefunc - frees everything. at exit function
  * @args: l_var struct of things I need to free
  */
@@ -33,13 +42,15 @@ void exit_new(var_t *args)
 /**
  * pickBuiltIn - chooses the appropriate built-in to execute
  * @vars: variable struct
- * Return: function pointer matching string
+ * Return: 1 if executed 0 if not found
  */
-void (*pickBuiltIn(var_t *vars))(var_t *args)
+int pickBuiltIn(var_t *vars)
 {
 	buil_t blt_ins[] = {
 		{"env",  print_envlist},
 		{"exit", exit_new},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
 		{NULL, NULL}
 	};
 	void (*f)(var_t *args);
@@ -52,6 +63,9 @@ void (*pickBuiltIn(var_t *vars))(var_t *args)
 	}
 	f = blt_ins[i].fnc_ptr;
 	if (f)
+	{
 		f(vars);
-	return (blt_ins[i].fnc_ptr);
+		return (1);
+	}
+	return (0);
 }
