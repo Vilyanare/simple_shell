@@ -4,6 +4,17 @@
   * __Write a simple UNIX command interpreter__
   * Learn about the history of UNIX, shell versions, B language, Ken Thompson; How a shell works; What is a process, pid, and ppid; functions vs system calls; How to manipulate the environment of a process; How shell uses `PATH`; How to use `execve`; What is `EOF`
 
+## Features
+- [X] man page
+- [ ] handles semi-columns, pipes, redirections
+- [X] handles arguments
+- [X] handles errors
+- [X] handles end-of-file condition
+- [X] handles the `PATH`
+- [X] basic implementation of exit (no arguments)
+- [ ] handles `Ctrl+C`
+- [ ] implements `env` built-in
+
 ## System and Environment
   * Compiler: `gcc 4.8.4`
   * Tested on Ubuntu 14.04 LTS using Vagrant in VirtualBox
@@ -42,10 +53,6 @@ vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$
 ```
 
 ## File Descriptions
-
-
-Files not described: `.gitignore`, `AUTHORS`, `README.md`
-
 ---
 File | Description
 --- | ---
@@ -53,12 +60,16 @@ File | Description
 `_printf.c` | a custom verson of `printf()` that handles `string` and `int`
 `built_ins.c` | enables the shell to execute certain custom built-ins
 `envlistfunc.c` | contains functions for manipulating `env` as a linked list
+`exit_nu.c` | exits a process
+`freefunc` | frees everything at exit
+`man_1_simple_shell` | a man page for `hsh`
 `path.c` | enables the creation and searching of `PATH`
 `shell.h` | contains directives, libraries, structures, and function prototypes
 `simple_shell.c` | the `main` file that executes the shell
 `strings1.c` | custom versions of `strcpy`, `strlen`, `puts`, `strchr`, `strdup`
 `strings2.c` | custom versions of `strcat`, `realloc`, `strtok`, and tokenizer-related functions
 `strings3.c` | custom versions of `strcmp` and `atoi`
+ | Files not described: `.gitignore`, `AUTHORS`, `README.md`
 
 ## Constraints
   * No more than 5 functions per file
