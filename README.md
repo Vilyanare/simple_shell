@@ -12,8 +12,9 @@
 - [X] handles end-of-file condition
 - [X] handles the `PATH`
 - [X] basic implementation of exit (no arguments)
-- [ ] handles `Ctrl+C`
-- [ ] implements `env` built-in
+- [X] handles `Ctrl+C`
+- [X] implements `env` built-in
+- [ ] future features TBD
 
 ## System and Environment
   * Compiler: `gcc 4.8.4`
@@ -59,9 +60,8 @@ File | Description
 `_eprintf.c` | a custom `printf()` that prints to standard error
 `_printf.c` | a custom verson of `printf()` that handles `string` and `int`
 `built_ins.c` | enables the shell to execute certain custom built-ins
+`changeenv.c` | allows changes to be made to the environment
 `envlistfunc.c` | contains functions for manipulating `env` as a linked list
-`exit_nu.c` | exits a process
-`freefunc` | frees everything at exit
 `man_1_simple_shell` | a man page for `hsh`
 `path.c` | enables the creation and searching of `PATH`
 `shell.h` | contains directives, libraries, structures, and function prototypes
