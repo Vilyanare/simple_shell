@@ -44,6 +44,7 @@ typedef struct list_environ
  * @hist: how many lines have been executed
  * @ptok: path token count
  * @exitstat: exit status to send to error program
+ * @delim: delimiter string to determine tokens
  */
 typedef struct variables
 {
@@ -75,7 +76,7 @@ typedef struct relations
  * struct builtin_pointers - struct to handle builtins
  * @usr_str: string to match to user input
  * @fnc_ptr: function to execute on match
- */	
+ */
 typedef struct builtin_pointers
 {
 	char *usr_str;
