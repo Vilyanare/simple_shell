@@ -87,6 +87,10 @@ version of exit. Exits the shell.
 env - a reproduction of the
 .B sh
 version of env. Prints the current environment.
+.PP
+setenv - Usage: setenv VARIABLE VALUE a builtin to change or add an environment variable.
+.PP
+unsetenv - Usage: unsetenv VARIABLE delete an environment variable.
 
 
 .SH SEE ALSO
