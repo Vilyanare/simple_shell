@@ -54,13 +54,11 @@ void search_path(var_t *vars)
 			_eprintf("%s: %d: %s: not found\n", vars->av, vars->hist, s);
 			exit(127);
 		}
-		if (!(S_ISREG(st.st_mode)))
+		if (S_ISREG(st.st_mode) == 0)
 		{
 			_eprintf("%s: %d: %s: Permission denied\n", vars->av, vars->hist, s);
 			exit(126);
-
 		}
 		execv(vars->args[0], vars->args);
-		/* HANDLE AN ERROR IF EXECV FAILS */
 	}
 }
