@@ -75,7 +75,7 @@ typedef struct relations
  * struct builtin_pointers - struct to handle builtins
  * @usr_str: string to match to user input
  * @fnc_ptr: function to execute on match
- */
+ */	
 typedef struct builtin_pointers
 {
 	char *usr_str;
@@ -89,7 +89,7 @@ typedef struct builtin_pointers
 char *getkirby(void);
 /* built-in functions */
 void exit_new(var_t *args);
-void (*pickBuiltIn(var_t *vars))(var_t *args);
+int pickBuiltIn(var_t *vars);
 /* strings1 functions */
 char *_strcpy(char *dest, char *src);
 int _puts(char *s);
@@ -105,17 +105,22 @@ char *_strtok(char *s, char *delim);
 /* strings 3 functions */
 int _strcmp(char *s1, char *s2);
 int _atoi(var_t *vars);
-
-/* environment handling functions */
+char *vstrcat(int num, ...);
+/* environment initialize functions */
 size_t list_lenenv(const l_env *h);
 void free_listenv(l_env *head);
 l_env *add_envir(char **env);
 l_env *add_node_endenv(l_env **head, char *s);
 void print_envlist(var_t *vars);
+/* functions to change env */
+void _setenv(var_t *vars);
+void _unsetenv(var_t *vars);
+l_env *searchenv(l_env *head, char *s);
 /* path handling functions */
 void search_path(var_t *vars);
 void crte_path(var_t *vars);
 /* exit handling */
+void _sigign(int sig);
 void freefunc(var_t *args);
 /* _printf functions */
 int _printf(const char *format, ...);

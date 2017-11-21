@@ -8,10 +8,11 @@
  */
 int main(__attribute__((unused))int ac, char **av, char **env)
 {
-	var_t vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0, "\n "};
+	var_t vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0, "\n \t"};
 	size_t size = 0;
-	int status = 0, ninter = isatty(STDIN_FILENO);	
+	int status = 0, ninter = isatty(STDIN_FILENO);
 
+	signal(SIGINT, _sigign);
 	vars.av = av[0];
 	vars.env = add_envir(env);
 	crte_path(&vars);
@@ -32,8 +33,8 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 				_puts("$ ");
 			continue;
 		}
-		pickBuiltIn(&vars);
-		search_path(&vars);
+		if (pickBuiltIn(&vars) == 0)
+			search_path(&vars);
 		wait(&status);
 		vars.exitstat = WEXITSTATUS(status);
 		if (ninter)

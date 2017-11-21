@@ -13,6 +13,8 @@ int _strcmp(char *s1, char *s2)
 {
 	int c;
 
+	if (_strlen(s1) != _strlen(s2))
+		return (1);
 	for (c = 0; s1[c] && s2[c]; c++)
 	{
 		if (s1[c] != s2[c])
@@ -56,4 +58,26 @@ int _atoi(var_t *vars)
 	}
 	else
 		return (0);
+}
+/**
+ * vstrcat - variadic string concatenate takes unlimited strings
+ * @num: number of strings input
+ * Return: address to beginning of concatenated string
+ */
+char *vstrcat(int num, ...)
+{
+	int x = 0;
+	va_list strings;
+	char *s1 = NULL;
+	char *temp = NULL;
+
+	va_start(strings, num);
+	for (x = 0; x < num; x++)
+	{
+		s1 = _strdup(va_arg(strings, char*));
+		temp = _strcat(temp, s1);
+		s1 = NULL;
+	}
+	va_end(strings);
+	return (temp);
 }
