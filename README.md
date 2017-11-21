@@ -14,6 +14,7 @@
 - [X] basic implementation of exit (no arguments)
 - [X] handles `Ctrl+C`
 - [X] implements `env` built-in
+- [X] setenv and unsetenv builtins
 - [ ] future features TBD
 
 ## System and Environment
