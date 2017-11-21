@@ -1,16 +1,15 @@
 #include "shell.h"
 /**
  * print_envlist - print l_env string members
- * @head: beginning of list to print
+ * @vars: variables struct
  */
-void print_envlist(l_var *vars)
+void print_envlist(var_t *vars)
 {
 	l_env *head = vars->env;
 
-	while(head)
+	while (head)
 	{
 		_printf("%s=%s\n", head->envvar, head->varval);
-		if (head->next)
 			head = head->next;
 	}
 }
@@ -35,12 +34,16 @@ void free_listenv(l_env *head)
  */
 size_t list_lenenv(const l_env *h)
 {
+	size_t count = 0;
+
 	if (h == NULL)
 		return (0);
-	if (h->next == NULL)
-		return (1);
-	else
-		return (list_lenenv(h->next) + 1);
+	while (h)
+	{
+		count++;
+		h = h->next;
+	}
+	return (count);
 }
 /**
  *add_node_end - add a new node to end of l_env
@@ -53,12 +56,13 @@ l_env *add_node_endenv(l_env **head, char *s)
 	l_env *temp = NULL;
 	l_env *tail = *head;
 	char *tstr = NULL;
+	char *deli = NULL;
 	unsigned int x = 0;
 	unsigned int c = list_lenenv(*head);
 
 	for (x = 1; x < c; x++)
 		tail = tail->next;
-	temp = malloc(sizeof(l_env));
+	temp = malloc(sizeof(struct list_environ));
 	if (temp == NULL)
 		return (NULL);
 	if (*head == NULL)
@@ -66,8 +70,10 @@ l_env *add_node_endenv(l_env **head, char *s)
 	else
 		tail->next = temp;
 	tstr = _strdup(s);
-	temp->envvar = _strtok(tstr, "=");
-	temp->varval = _strtok(NULL, "=");
+	deli = _strchr(tstr, '=');
+	temp->envvar = tstr;
+	deli[0] = '\0';
+	temp->varval = (deli + 1);
 	temp->next = NULL;
 	return (temp);
 }

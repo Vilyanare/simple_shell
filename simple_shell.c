@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * main - main entry point to super simple shell
  * @ac: argument count
@@ -9,35 +8,35 @@
  */
 int main(__attribute__((unused))int ac, char **av, char **env)
 {
-	l_var vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0};
+	var_t vars = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0, "\n \t"};
 	size_t size = 0;
-	int status = 0;
-	char *delim = "\n ";
-	int ninter = isatty(STDIN_FILENO);
-	vars.av = av[0];
+	int status = 0, ninter = isatty(STDIN_FILENO);
 
+	signal(SIGINT, _sigign);
+	vars.av = av[0];
 	vars.env = add_envir(env);
 	crte_path(&vars);
 	if (ninter)
 		_puts("$ ");
 	while (getline(&vars.gets, &size, stdin) != -1)
 	{
+		vars.exitstat = EXIT_SUCCESS;
 		vars.hist++;
 		if (vars.tokc)
-		{
 			for (; vars.tokc >= 0; vars.tokc--)
 				free(vars.args[vars.tokc]);
-		}
-		vars.tokc = counttok(vars.gets, delim);
-		vars.args = tokenizer(vars.gets, delim, vars.args);
+		vars.tokc = counttok(vars.gets, vars.delim);
+		vars.args = tokenizer(vars.gets, vars.delim, vars.args);
 		if (vars.gets[0] == '\n')
 		{
 			if (ninter)
 				_puts("$ ");
 			continue;
 		}
-		search_path(&vars);
+		if (pickBuiltIn(&vars) == 0)
+			search_path(&vars);
 		wait(&status);
+		vars.exitstat = WEXITSTATUS(status);
 		if (ninter)
 			_puts("$ ");
 		free(vars.gets);
@@ -46,5 +45,5 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 	freefunc(&vars);
 	if (ninter)
 		_puts("\n");
-	exit(EXIT_SUCCESS);
+	exit(vars.exitstat);
 }

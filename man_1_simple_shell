@@ -1,0 +1,115 @@
+.TH HSH 1 "November 19, 2017" "1.0" "hsh General Commands Manual"
+
+
+
+.SH NAME
+.B hsh
+- a very simple command interpreter (shell)
+
+
+
+.SH SYNOPSIS
+interactive mode:
+.B ./hsh
+
+Once invoked in interactive mode, shell commands may be entered after the
+.B "$"
+
+non-interactive mode:
+.B ./hsh
+.I COMMAND
+.I [ARGUMENT]
+
+.SH DESCRIPTION
+.B hsh
+is a custom-made command interpreter created for the purpose(s) of demonstrating the creator(s) knowledge in the C programming language. This shell is very limited in its scope, but nonetheless has been designed to accomadate future functionality. Many commands commonly found in 
+.I /bin
+are supported such as
+.B ls
+and
+.B pwd.
+Additionally, the following built-ins are supported:
+.B exit
+and
+.B env.
+This shell is not intended for use by consumers. Much of
+.B hsh
+is inspired by functionality from
+.B dash.
+
+
+
+.SH OVERVIEW
+This program will read from the terminal and files. Once entered the shell will interpret a command, parse, then execute.
+
+
+
+.SH INSTALLATION
+To install
+.B hsh
+
+Clone the repository:
+.RS
+git clone https://github.com/Vilyanare/simple_shell.git
+.RE
+Change into the proper directory:
+.RS
+cd simple_shell
+.RE
+Compile using:
+.RS
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+.RE
+Run in interactive mode:
+.RS
+.B ./hsh
+.RE
+
+
+
+.SH INVOCATION
+To call an interactive shell, simply call
+.B ./hsh.
+The shell will prompt before each command when in interactive mode. To run the shell non-interactively, you may pipe a command into the shell program to make a one-time call, such as:
+
+.RS
+echo "ls" | ./hsh
+.RE
+
+
+
+.SH BUILT-INS
+.PP
+exit - a reproduction of the
+.B sh
+version of exit. Exits the shell.
+.PP
+env - a reproduction of the
+.B sh
+version of env. Prints the current environment.
+
+
+.SH SEE ALSO
+sh(1)
+
+
+
+.SH HISTORY
+.B hsh
+is inspired by
+.B dash.
+
+
+
+.SH BUGS
+Bugs are expected if any command is executed that isn't in the
+.I /bin/
+directory, or if it is not one of the listed built-ins.
+.PP
+Aliases are not supported.
+.PP
+
+
+
+.SH AUTHOR
+Written by Thomas Dumont with assistance from Jacob Hartman.
