@@ -6,6 +6,7 @@
 void _unsetenv(var_t *vars)
 {
 	l_env *unset = vars->env;
+	l_env *next = NULL;
 	int f = 1;
 
 	if (vars->args[1])
@@ -20,9 +21,10 @@ void _unsetenv(var_t *vars)
 		{
 			if (_strcmp(unset->next->envvar, vars->args[1]) == 0)
 			{
+				next = unset->next->next;
 				free(unset->next->envvar);
 				free(unset->next);
-				unset->next = unset->next->next;
+				unset->next = next;
 				f = 0;
 				break;
 			}
@@ -57,18 +59,16 @@ void _setenv(var_t *vars)
 			len1 = _strlen(vars->args[1]);
 			free(set->envvar);
 			set->envvar = tmp;
-			set->envvar[len1 + 1] = '\0';
-			set->varval = (set->envvar + len1 + 2);
+			set->envvar[len1] = '\0';
+			set->varval = (set->envvar + len1 + 1);
 		}
 		else
 		{
 			add_node_endenv(&env, tmp);
+			free(tmp);
 		}
 		if (_strcmp("PATH", vars->args[1]) == 0)
 		{
-			for (; vars->ptok >= 0; vars->ptok--)
-				free(vars->path[vars->ptok]);
-			free(vars->path);
 			crte_path(vars);
 		}
 
