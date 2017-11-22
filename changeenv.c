@@ -7,7 +7,6 @@ void _unsetenv(var_t *vars)
 {
 	l_env *unset = vars->env;
 	l_env *next = NULL;
-	int f = 1;
 
 	if (vars->args[1])
 	{
@@ -25,13 +24,10 @@ void _unsetenv(var_t *vars)
 				free(unset->next->envvar);
 				free(unset->next);
 				unset->next = next;
-				f = 0;
 				break;
 			}
 			unset = unset->next;
 		}
-		if (f)
-			_eprintf("Error: %s not found", vars->args[1]);
 
 	}
 	else
