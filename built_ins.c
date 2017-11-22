@@ -16,16 +16,20 @@ void freefunc(var_t *args)
 {
 	if (args->gets)
 		free(args->gets);
-	free_listenv(args->env);
-	if (args->hist)
+	if (args->env)
+		free_listenv(args->env);
+	if (args->args)
 	{
 		for (; args->tokc >= 0; args->tokc--)
 			free(args->args[args->tokc]);
 		free(args->args);
 	}
-	for (; args->ptok >= 0; args->ptok--)
-		free(args->path[args->ptok]);
-	free(args->path);
+	if (args->path)
+	{
+		for (; args->ptok >= 0; args->ptok--)
+			free(args->path[args->ptok]);
+		free(args->path);
+	}
 }
 /**
  * exit_new - exits the process
