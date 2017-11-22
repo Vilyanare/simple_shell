@@ -6,13 +6,16 @@
 void crte_path(var_t *vars)
 {
 	l_env *head = vars->env;
+	char *temp = NULL;
 
 	while (head->next)
 	{
 		if (_strcmp(head->envvar, "PATH") == 0)
 		{
-			vars->ptok = counttok(head->varval, ":");
-			vars->path = tokenizer(head->varval, ":", vars->path);
+			temp = _strdup(head->varval);
+			vars->ptok = counttok(temp, ":");
+			vars->path = tokenizer(temp, ":", vars->path);
+			free(temp);
 			break;
 		}
 		head = head->next;

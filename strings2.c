@@ -118,6 +118,10 @@ int counttok(char *s, char *delim)
 		{
 			f = 0;
 		}
+		if (s[x + 1] == 0 && f == 0)
+		{
+			count++;
+		}
 
 	}
 	return (count);
